@@ -11,6 +11,7 @@ public class Commons {
 
     public Commons(JavaPlugin javaPlugin) {
         Commons.javaPlugin = javaPlugin;
+        getServer().getMessenger().registerOutgoingPluginChannel(javaPlugin, "BungeeCord");
     }
 
     public static JavaPlugin getJavaPlugin() {
