@@ -1,6 +1,6 @@
 package co.mhdv.commons.item;
 
-import co.mhdv.commons.text.Color;
+import co.mhdv.commons.text.Message;
 import com.google.common.base.Preconditions;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,22 +28,27 @@ public class ItemBuilder {
         this.itemMeta = itemStack.getItemMeta();
     }
 
-    public ItemBuilder of(ItemStack itemStack) {
+    public static ItemBuilder of(ItemStack itemStack) {
         return new ItemBuilder(itemStack);
     }
 
-    public ItemBuilder of(Material material) {
+    public static ItemBuilder of(Material material) {
         return new ItemBuilder(material);
     }
 
     public ItemBuilder name(String name) {
-        this.itemMeta.setDisplayName(Color.toColor(name));
+        this.itemMeta.setDisplayName(Message.toColor(name));
         return this;
     }
 
     public ItemBuilder lore(String... lines) {
-        final List<String> lore = Arrays.stream(lines).map(Color::toColor).collect(Collectors.toList());
+        final List<String> lore = Arrays.stream(lines).map(Message::toColor).collect(Collectors.toList());
         this.itemMeta.getLore().addAll(lore);
+        return this;
+    }
+
+    public ItemBuilder clearLore() {
+        this.itemMeta.setLore(new ArrayList<>());
         return this;
     }
 
@@ -82,7 +88,7 @@ public class ItemBuilder {
     }
 
     public ItemStack build() {
-        Preconditions.checkNotNull(this.itemStack, getClass().getName().concat("#of must be called before other methods in this class."));
+        Preconditions.checkNotNull(this.itemStack, getClass().getName() + "#of must be called before other methods in this class.");
         this.itemStack.setItemMeta(this.itemMeta);
         return this.itemStack;
     }
