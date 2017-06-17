@@ -1,15 +1,13 @@
-package co.mhdv.commons.text;
+package co.mhdv.commons;
 
-import co.mhdv.commons.Commons;
-import co.mhdv.commons.item.ItemBuilder;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
 
+@SuppressWarnings("WeakerAccess")
 public final class Message {
+
+    private Message() {
+    }
 
     public static String toColor(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);

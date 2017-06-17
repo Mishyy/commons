@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@SuppressWarnings("WeakerAccess")
 public class Commons {
 
     private static JavaPlugin javaPlugin;

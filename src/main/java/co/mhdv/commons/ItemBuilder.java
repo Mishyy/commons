@@ -1,6 +1,5 @@
-package co.mhdv.commons.item;
+package co.mhdv.commons;
 
-import co.mhdv.commons.text.Message;
 import com.google.common.base.Preconditions;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
