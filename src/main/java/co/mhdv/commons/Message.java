@@ -14,7 +14,7 @@ public final class Message {
     }
 
     public static String toColorless(String string) {
-        return ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', string));
+        return ChatColor.stripColor(Message.toColor(string));
     }
 
     public static void send(Player player, String string) {

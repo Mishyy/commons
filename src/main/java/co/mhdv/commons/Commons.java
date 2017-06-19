@@ -15,13 +15,13 @@ public class Commons {
     }
 
     public static JavaPlugin getJavaPlugin() {
-        Preconditions.checkNotNull(javaPlugin, "The constructor of " + Commons.class.getName() + " must be called in the #onEnable of the plugin before use.");
+        Preconditions.checkNotNull(javaPlugin);
         return javaPlugin;
     }
 
     public static Server getServer() {
 
-        Preconditions.checkNotNull(javaPlugin, "The constructor of " + Commons.class.getName() + " must be called in the #onEnable of the plugin before use.");
+        Preconditions.checkNotNull(javaPlugin);
         return javaPlugin.getServer();
     }
 

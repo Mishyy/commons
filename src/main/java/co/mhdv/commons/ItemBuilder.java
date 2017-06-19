@@ -87,7 +87,7 @@ public class ItemBuilder {
     }
 
     public ItemStack build() {
-        Preconditions.checkNotNull(this.itemStack, getClass().getName() + "#of must be called before other methods in this class.");
+        Preconditions.checkNotNull(this.itemStack);
         this.itemStack.setItemMeta(this.itemMeta);
         return this.itemStack;
     }
