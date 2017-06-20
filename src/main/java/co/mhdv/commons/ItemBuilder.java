@@ -41,8 +41,9 @@ public class ItemBuilder {
     }
 
     public ItemBuilder lore(String... lines) {
-        final List<String> lore = Arrays.stream(lines).map(Message::toColor).collect(Collectors.toList());
-        this.itemMeta.getLore().addAll(lore);
+        final List<String> lore = (!this.itemMeta.hasLore() ? new ArrayList<>() : this.itemMeta.getLore());
+        lore.addAll(Arrays.stream(lines).map(Message::toColor).collect(Collectors.toList()));
+        this.itemMeta.setLore(lore);
         return this;
     }
 

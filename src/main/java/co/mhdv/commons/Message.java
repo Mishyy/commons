@@ -1,7 +1,7 @@
 package co.mhdv.commons;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 
 @SuppressWarnings("WeakerAccess")
 public final class Message {
@@ -17,10 +17,14 @@ public final class Message {
         return ChatColor.stripColor(Message.toColor(string));
     }
 
-    public static void send(Player player, String string) {
+    public static void send(CommandSender sender, String string) {
         for (String s : Patterns.NEW_LINE.split(string)) {
-            player.sendMessage(toColor(s));
+            sender.sendMessage(toColor(s));
         }
+    }
+
+    public static void send(CommandSender sender, String string, Object... objects) {
+        Message.send(sender, String.format(string, objects));
     }
 
     public static void broadcast(String string) {
@@ -31,7 +35,11 @@ public final class Message {
         });
     }
 
-    public void broadcast(String string, String permission) {
+    public static void broadcast(String string, Object... objects) {
+        Message.broadcast(String.format(string, objects));
+    }
+
+    public static void broadcast(String string, String permission) {
         Commons.getServer().getOnlinePlayers().stream()
                 .filter(player -> player.hasPermission(permission))
                 .forEach(player -> {
@@ -39,6 +47,10 @@ public final class Message {
                         player.sendMessage(toColor(s));
                     }
                 });
+    }
+
+    public static void broadcast(String string, String permission, Object... objects) {
+        Message.broadcast(String.format(string, objects), permission);
     }
 
 }
